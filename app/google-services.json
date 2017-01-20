@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "19129526340",
+    "firebase_url": "https://tuitiondemo.firebaseio.com",
+    "project_id": "tuitiondemo",
+    "storage_bucket": "tuitiondemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19129526340:android:e25bb9f68c84d1a0",
+        "android_client_info": {
+          "package_name": "com.example.aleson.tuitiondemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19129526340-oott9ir7g06b6qcr541j7hs78qj73btk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTd3QFTyZxG1LLYJSfrm8qniZzHjlwFaU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19129526340:android:a12db5f2ef8ac147",
+        "android_client_info": {
+          "package_name": "com.example.aleson.tuitionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19129526340-24nas89mng9ukm8kjg6q0n8n9jhle0fc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aleson.tuitionapp",
+            "certificate_hash": "B3D6E459F5AD9C4AC2663F679E4FCF800AFE1193"
+          }
+        },
+        {
+          "client_id": "19129526340-oott9ir7g06b6qcr541j7hs78qj73btk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTd3QFTyZxG1LLYJSfrm8qniZzHjlwFaU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19129526340-oott9ir7g06b6qcr541j7hs78qj73btk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

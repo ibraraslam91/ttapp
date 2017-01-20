@@ -27,13 +27,20 @@
 
         <EditText
             android:hint="@string/name_hint"
+            android:id="@+id/EdtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <EditText
-            android:hint="@string/class_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+       <Spinner
+
+           android:prompt="@string/spinner_prompt"
+           style="@android:style/Widget.Spinner"
+           android:layout_marginTop="8dp"
+           android:entries="@array/class_array"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
         <Button
+            android:layout_marginTop="12dp"
+            android:id="@+id/BtnSave"
             android:text="@string/save_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

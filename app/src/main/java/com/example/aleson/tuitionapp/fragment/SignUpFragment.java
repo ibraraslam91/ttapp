@@ -23,7 +23,7 @@ public class SignUpFragment extends Fragment {
     }
 
 
-    public static SignUpFragment newInstance(String param1, String param2) {
+    public static SignUpFragment newInstance() {
         SignUpFragment fragment = new SignUpFragment();
        return fragment;
     }

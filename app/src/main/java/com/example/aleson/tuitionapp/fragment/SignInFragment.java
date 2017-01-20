@@ -23,7 +23,7 @@ public class SignInFragment extends Fragment {
     }
 
 
-    public static SignInFragment newInstance(String param1, String param2) {
+    public static SignInFragment newInstance() {
         SignInFragment fragment = new SignInFragment();
         return fragment;
     }

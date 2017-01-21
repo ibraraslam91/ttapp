@@ -47,6 +47,7 @@ public class UserInfoCollectActivity extends AppCompatActivity {
     String[] list;
     Snackbar snackbar;
     String imagePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,13 +112,8 @@ public class UserInfoCollectActivity extends AppCompatActivity {
                     }if(userClass!=null){
 
                     }else {
-                        String name = EdtName.getText().toString();
-                        UserDataModel userData = new UserDataModel();
-                        userData.setProfileImageUrl(imageUrl);
-                        userData.setUserName(name);
-                        userData.setUserClass(userClass);
-                        DatabaseReference userDataNode = FirebaseDatabase.getInstance().getReference(FirebasePaths.getUserDataNode()).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        userDataNode.setValue(userData);
+
+
                     }
 
                 }else {
@@ -125,6 +121,16 @@ public class UserInfoCollectActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    public void uploadUserData(String name ,String userClass, String imageUrl){
+        UserDataModel userData = new UserDataModel();
+        userData.setProfileImageUrl(imageUrl);
+        userData.setUserName(name);
+        userData.setUserClass(userClass);
+        DatabaseReference userDataNode = FirebaseDatabase.getInstance().getReference(FirebasePaths.getUserDataNode()).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userDataNode.setValue(userData);
     }
 
 

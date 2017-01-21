@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_user_info_collect"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,45 +10,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.aleson.tuitionapp.activity.UserInfoCollectActivity">
 
-    <ImageView
-        android:id="@+id/user_profile_image"
-        android:src="@drawable/defaultimage"
-        android:layout_marginTop="35dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
-
-    <LinearLayout
-        android:layout_below="@id/user_profile_image"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <com.pkmmte.view.CircularImageView
+            android:id="@+id/user_profile_image"
+            android:src="@drawable/defaultimage"
+            android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
 
-
-        <EditText
-            android:hint="@string/name_hint"
-            android:id="@+id/EdtName"
+        <LinearLayout
+            android:layout_below="@id/user_profile_image"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-       <Spinner
-
-           android:prompt="@string/spinner_prompt"
-           style="@android:style/Widget.Spinner"
-           android:layout_marginTop="8dp"
-           android:entries="@array/class_array"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"/>
-        <Button
-            android:layout_marginTop="12dp"
-            android:id="@+id/BtnSave"
-            android:text="@string/save_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+            android:layout_height="wrap_content">
 
 
+            <EditText
+                android:hint="@string/name_hint"
+                android:id="@+id/EdtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.piotrek.customspinner.CustomSpinner
+                android:id="@+id/class_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/white">
+            </com.piotrek.customspinner.CustomSpinner>
+            <Button
+                android:layout_marginTop="12dp"
+                android:id="@+id/BtnSave"
+                android:text="@string/save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
 
 
+    </RelativeLayout>
 
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

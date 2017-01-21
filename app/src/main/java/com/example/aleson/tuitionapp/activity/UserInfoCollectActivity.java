@@ -1,5 +1,14 @@
 package com.example.aleson.tuitionapp.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,22 +28,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.piotrek.customspinner.CustomSpinner;
 import com.pkmmte.view.CircularImageView;
 
+import java.io.IOException;
+
 public class UserInfoCollectActivity extends AppCompatActivity {
 
+    final int Camera_Request_ID = 2;
+    final int Gallery_Requset_ID = 3;
+
+    Bitmap bitmap;
     EditText EdtName;
     Button BtnSave;
     CircularImageView userProfileImage;
     CustomSpinner classSpinner;
     String userClass;
-
+    CoordinatorLayout coordinatorLayout;
     boolean imageUploaded=false;
     String imageUrl;
     String[] list;
-
+    Snackbar snackbar;
+    String imagePath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_collect);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.activity_user_info_collect);
+        snackbar = Snackbar.make(coordinatorLayout,"Tap Image to Change Profile Photo",Snackbar.LENGTH_LONG);
+        snackbar.show();
         EdtName = (EditText) findViewById(R.id.EdtName);
         classSpinner = (CustomSpinner) findViewById(R.id.class_spinner);
         list = getResources().getStringArray(R.array.class_array);
@@ -59,7 +78,27 @@ public class UserInfoCollectActivity extends AppCompatActivity {
         userProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG","click");
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserInfoCollectActivity.this);
+                builder.setTitle("Add Photo");
+                final CharSequence[] items = {"By Camera", "From Gallery"};
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+                        if (items[item].equals("By Camera")) {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, Camera_Request_ID);
+                        } else if (items[item].equals("From Gallery")) {
+                            Intent intent = new Intent(
+                                    Intent.ACTION_PICK,
+                                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            intent.setType("image/*");
+                            startActivityForResult(
+                                    Intent.createChooser(intent, "Select File"),
+                                    Gallery_Requset_ID);
+                        }
+                    }
+                });
+                builder.show();
             }
         });
         BtnSave.setOnClickListener(new View.OnClickListener() {
@@ -82,9 +121,52 @@ public class UserInfoCollectActivity extends AppCompatActivity {
                     }
 
                 }else {
-
+                    snackbar.show();
                 }
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 2) {
+                if (data != null) {
+                    bitmap = data.getExtras().getParcelable("data");
+                    userProfileImage.setImageBitmap(bitmap);
+                    Uri imageUri = data.getData();
+                    imagePath = getRealPathFromURI(imageUri);
+                }
+            }
+            if (requestCode == 3) {
+                if (data != null) {
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                        userProfileImage.setImageBitmap(bitmap);
+                        Uri imageUri = data.getData();
+                        imagePath = getRealPathFromURI(imageUri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
 }

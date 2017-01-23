@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/navi_schedule"
-
+        android:checked="true"
         android:icon="@drawable/schedule"
         android:title="@string/navi_schedule"
         />

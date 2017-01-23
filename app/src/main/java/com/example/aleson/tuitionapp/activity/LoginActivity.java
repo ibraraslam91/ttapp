@@ -1,5 +1,6 @@
 package com.example.aleson.tuitionapp.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,12 +27,13 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.O
     FirebaseAuth mAuth;
 
     FirebaseAuth.AuthStateListener mAuthStateListener;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        initProgressDialog();
         mAuth = FirebaseAuth.getInstance();
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -40,6 +42,9 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.O
                 Log.d("TAG","auth states change");
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user!=null){
+                    if(progressDialog!=null){
+                        progressDialog.show();
+                    }
                     Log.d("TAG",user.getUid());
                     final DatabaseReference userDataNode = FirebaseDatabase.getInstance().getReference(FirebasePaths.getUserDataNode());
                     userDataNode.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -47,54 +52,54 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.O
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Log.d("TAG",dataSnapshot.toString());
                             if(dataSnapshot.child(user.getUid()).exists()){
-
                                 Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                                 startActivity(intent);
+                                if(progressDialog!=null){
+                                    progressDialog.dismiss();
+                                }
                             }
                             else {
                                 Intent intent = new Intent(LoginActivity.this,UserInfoCollectActivity.class);
                                 startActivity(intent);
+                                if(progressDialog!=null){
+                                    progressDialog.dismiss();
+                                }
                             }
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
                         }
                     });
-
                 }
             }
         };
-
         getSupportFragmentManager().beginTransaction().add(R.id.frag_container,SignInFragment.newInstance()).commit();
-
     }
-
     @Override
     protected void onStart() {
         super.onStart();
-
         mAuth.addAuthStateListener(mAuthStateListener);
     }
-
-
     @Override
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(mAuthStateListener);
     }
-
+    public void initProgressDialog(){
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+    }
     @Override
     public void onSignIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
             }
         });
     }
-
     @Override
     public void onSignUpSelected() {
 

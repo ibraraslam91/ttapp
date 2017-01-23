@@ -92,7 +92,7 @@ public class UserInfoCollectActivity extends AppCompatActivity implements Cloudi
             public void onClick(View v) {
                 if(EdtName.getText().toString().equals("")){
                     EdtName.setError("R");
-                }else if (userClass != null){
+                }else if (userClass == null){
                     Snackbar snackbar1 = Snackbar.make(coordinatorLayout,"Please Select Class",Snackbar.LENGTH_LONG);
                     snackbar1.show();
                 }
@@ -154,6 +154,9 @@ public class UserInfoCollectActivity extends AppCompatActivity implements Cloudi
         userData.setUserClass(userClass);
         DatabaseReference userDataNode = FirebaseDatabase.getInstance().getReference(FirebasePaths.getUserDataNode()).child(userID);
         userDataNode.setValue(userData);
+        Intent intent = new Intent(UserInfoCollectActivity.this,HomeActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
 
@@ -163,6 +166,7 @@ public class UserInfoCollectActivity extends AppCompatActivity implements Cloudi
         if (resultCode == RESULT_OK) {
             if (requestCode == 2) {
                 if (data != null) {
+                    imageUploaded = true;
                     bitmap = data.getExtras().getParcelable("data");
                     userProfileImage.setImageBitmap(bitmap);
                     Uri imageUri = data.getData();
@@ -172,6 +176,7 @@ public class UserInfoCollectActivity extends AppCompatActivity implements Cloudi
             if (requestCode == 3) {
                 if (data != null) {
                     try {
+                        imageUploaded = true;
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                         userProfileImage.setImageBitmap(bitmap);
                         Uri imageUri = data.getData();
@@ -202,8 +207,6 @@ public class UserInfoCollectActivity extends AppCompatActivity implements Cloudi
     @Override
     public void onUploadComplete(Map map) {
         uploadUserData(EdtName.getText().toString(),userClass,map.get("url").toString());
-        Intent intent = new Intent(UserInfoCollectActivity.this,HomeActivity.class);
-        startActivity(intent);
-        this.finish();
+
     }
 }

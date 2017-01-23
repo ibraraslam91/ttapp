@@ -12,6 +12,15 @@
     <string name="name_hint">Name</string>
     <string name="save_btn">Save</string>
     <string name="spinner_prompt">Select Class</string>
+    <!-- Nevi Menu-->
+    <string name="navi_subject">Subjects</string>
+    <string name="navi_notification">Notification</string>
+    <string name="navi_profile">Profile</string>
+    <string name="navi_logout">Log out</string>
+    <string name="navi_schedule">Schedule</string>
+
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDreawer">Close Drawer</string>
 
     <string-array name="class_array">
         <item>XI</item>

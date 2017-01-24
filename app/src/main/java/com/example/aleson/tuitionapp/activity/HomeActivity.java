@@ -1,6 +1,7 @@
 package com.example.aleson.tuitionapp.activity;
 
 import android.content.res.Configuration;
+
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -12,8 +13,9 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.aleson.tuitionapp.R;
+import com.example.aleson.tuitionapp.fragment.SubjectFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements SubjectFragment.OnFragmentInteractionListener {
 
 
     DrawerLayout drawerLayout;
@@ -28,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initiNaviDrawer();
+
 
 
 
@@ -65,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.navi_subject:
                 Log.d("TAG","subject");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, SubjectFragment.newInstance()).commit();
                 break;
             case R.id.navi_notification:
                 Log.d("TAG","notification");

@@ -8,9 +8,12 @@ import com.google.firebase.database.Exclude;
 
 public class SubjectDataModel {
     @Exclude
-    String subjectID;
-    String teacher;
-    String eventNodeID;
+    private String subjectID;
+    private String subjectName;
+    private String teacher;
+    private String lectureID;
+    private String timeing;
+    private String filesURL;
 
     public SubjectDataModel() {
     }
@@ -23,6 +26,14 @@ public class SubjectDataModel {
         this.subjectID = subjectID;
     }
 
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
     public String getTeacher() {
         return teacher;
     }
@@ -31,11 +42,27 @@ public class SubjectDataModel {
         this.teacher = teacher;
     }
 
-    public String getEventNodeID() {
-        return eventNodeID;
+    public String getLectureID() {
+        return lectureID;
     }
 
-    public void setEventNodeID(String eventNodeID) {
-        this.eventNodeID = eventNodeID;
+    public void setLectureID(String lectureID) {
+        this.lectureID = lectureID;
+    }
+
+    public String getTimeing() {
+        return timeing;
+    }
+
+    public void setTimeing(String timeing) {
+        this.timeing = timeing;
+    }
+
+    public String getFilesURL() {
+        return filesURL;
+    }
+
+    public void setFilesURL(String filesURL) {
+        this.filesURL = filesURL;
     }
 }

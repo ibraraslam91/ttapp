@@ -10,8 +10,6 @@ public class UserDataModel {
 
     @Exclude
     private String userID;
-
-
     private String userName;
     private String userClass;
     private String profileImageUrl;

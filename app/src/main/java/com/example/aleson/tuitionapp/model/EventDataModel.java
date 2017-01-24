@@ -8,10 +8,10 @@ import com.google.firebase.database.Exclude;
 
 public class EventDataModel {
     @Exclude
-    String eventID;
-    String eventTitel;
-    String startTime;
-    String eventUrl;
+    private String eventID;
+    private String eventTitel;
+    private String startTime;
+    private String eventUrl;
 
 
     public EventDataModel() {

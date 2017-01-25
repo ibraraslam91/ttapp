@@ -1,7 +1,6 @@
 package com.example.aleson.tuitionapp.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -56,7 +55,7 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =inflater.inflate(R.layout.fragment_notification, container, false);
         notificationsList = new ArrayList<LectureDataModel>();
-        adapter = new NotificationRecyclerViewAdapter(notificationsList,R.layout.notification_item_layout);
+        adapter = new NotificationRecyclerViewAdapter(notificationsList,R.layout.lecture_item_layout);
         adapter.setOnItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position) {

@@ -15,41 +15,34 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by Aleson on 1/24/2017.
+ * Created by Aleson on 1/25/2017.
  */
 
-public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<NotificationRecyclerViewAdapter.NotificationRecyclerViewHolder> {
+public class LectureRecyclerViewAdapter extends RecyclerView.Adapter<LectureRecyclerViewAdapter.LectureRecyclerViewHolder> {
 
     ArrayList<LectureDataModel> lectureList;
     int layOut;
     ItemClickListener mListener;
 
-    public NotificationRecyclerViewAdapter(ArrayList<LectureDataModel> list, int layOutId){
+    public LectureRecyclerViewAdapter(ArrayList<LectureDataModel> list, int layOutId){
         this.lectureList = list;
         this.layOut = layOutId;
     }
 
     @Override
-    public NotificationRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LectureRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(layOut, parent, false);
-
-        return new NotificationRecyclerViewHolder(v);
+        return new LectureRecyclerViewAdapter.LectureRecyclerViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(NotificationRecyclerViewHolder holder, int position) {
-
+    public void onBindViewHolder(LectureRecyclerViewHolder holder, int position) {
         LectureDataModel lectureData = lectureList.get(position);
         holder.TxtLectureTitle.setText(lectureData.getLectureTitel());
         holder.TxtLectureDec.setText(lectureData.getLectureDec());
         Date lectureTime = new Date(lectureData.getLectureTime());
         SimpleDateFormat formater = new SimpleDateFormat("dd/MMM hh:mm a");
         holder.TxtLectureTime.setText(formater.format(lectureTime));
-
-    }
-
-    public void setOnItemClickListener(ItemClickListener clickListener){
-        this.mListener = clickListener;
     }
 
     @Override
@@ -61,9 +54,10 @@ public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<Notifi
         }
     }
 
-    public class NotificationRecyclerViewHolder extends RecyclerView.ViewHolder{
+
+    public class LectureRecyclerViewHolder extends RecyclerView.ViewHolder{
         TextView TxtLectureTitle, TxtLectureDec, TxtLectureTime;
-        public NotificationRecyclerViewHolder(View itemView) {
+        public LectureRecyclerViewHolder(View itemView) {
             super(itemView);
             TxtLectureTitle = (TextView) itemView.findViewById(R.id.lecture_title);
             TxtLectureDec = (TextView) itemView.findViewById(R.id.lecture_dec);

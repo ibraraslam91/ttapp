@@ -121,10 +121,10 @@ public class SubjectFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void onClick(View view, int position) {
-        Log.d("TAG","Lecture id : "+ userSubjects.get(position).getLectureID());
+        mListener.onSubjectSelected(userSubjects.get(position).getSubjectID());
     }
 
     public interface OnFragmentInteractionListener {
-
+        public void onSubjectSelected(String subjectID);
     }
 }

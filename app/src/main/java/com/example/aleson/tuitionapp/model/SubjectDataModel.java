@@ -11,7 +11,6 @@ public class SubjectDataModel {
     private String subjectID;
     private String subjectName;
     private String teacher;
-    private String lectureID;
     private String timeing;
     private String filesURL;
 
@@ -40,14 +39,6 @@ public class SubjectDataModel {
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
-    }
-
-    public String getLectureID() {
-        return lectureID;
-    }
-
-    public void setLectureID(String lectureID) {
-        this.lectureID = lectureID;
     }
 
     public String getTimeing() {

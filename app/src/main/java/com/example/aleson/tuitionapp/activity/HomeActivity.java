@@ -20,7 +20,7 @@ import com.example.aleson.tuitionapp.fragment.NotificationFragment;
 import com.example.aleson.tuitionapp.fragment.SubjectFragment;
 
 
-public class HomeActivity extends AppCompatActivity implements SubjectFragment.OnFragmentInteractionListener {
+public class HomeActivity extends AppCompatActivity implements SubjectFragment.OnFragmentInteractionListener,NotificationFragment.OnFragmentInteractionListener {
 
 
     DrawerLayout drawerLayout;
@@ -76,6 +76,9 @@ public class HomeActivity extends AppCompatActivity implements SubjectFragment.O
             case R.id.navi_notification:
                 Log.d("TAG","notification");
                 fm.beginTransaction().replace(R.id.fragment_container, NotificationFragment.newInstance()).commit();
+                break;
+            case R.id.navi_faq:
+
                 break;
             case R.id.navi_profile:
                 Log.d("TAG","profile");

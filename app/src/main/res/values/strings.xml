@@ -17,7 +17,7 @@
     <string name="navi_notification">Notification</string>
     <string name="navi_profile">Profile</string>
     <string name="navi_logout">Log out</string>
-    <string name="navi_schedule">Schedule</string>
+    <string name="navi_faq">FAQs</string>
 
     <string name="openDrawer">Open Drawer</string>
     <string name="closeDreawer">Close Drawer</string>

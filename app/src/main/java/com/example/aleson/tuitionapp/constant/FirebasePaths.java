@@ -9,6 +9,7 @@ public class FirebasePaths {
     private final static String userDataNode = "userDataNode";
     private final static String userSubjectNode = "userSubjects";
     private final static String subjectNode = "SubjectNode";
+    private final static String lectureDataNode = "lectureDataNode";
 
     public static String getUserDataNode() {
         return userDataNode;
@@ -21,4 +22,9 @@ public class FirebasePaths {
     public static String getSubjectNode() {
         return subjectNode;
     }
+
+    public static String getLectureDataNode() {
+        return lectureDataNode;
+    }
+
 }

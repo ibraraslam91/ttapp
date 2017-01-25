@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity implements SignInFragment.O
         setContentView(R.layout.activity_login);
         initProgressDialog();
         mAuth = FirebaseAuth.getInstance();
-
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

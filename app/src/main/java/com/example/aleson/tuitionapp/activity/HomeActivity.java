@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.aleson.tuitionapp.R;
 import com.example.aleson.tuitionapp.fragment.SubjectFragment;
 
+
 public class HomeActivity extends AppCompatActivity implements SubjectFragment.OnFragmentInteractionListener {
 
 
@@ -30,11 +31,6 @@ public class HomeActivity extends AppCompatActivity implements SubjectFragment.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initiNaviDrawer();
-
-
-
-
-
     }
 
     public void initiNaviDrawer(){

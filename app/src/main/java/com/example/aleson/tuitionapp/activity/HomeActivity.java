@@ -44,10 +44,11 @@ public class HomeActivity extends AppCompatActivity implements SubjectFragment.O
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("TAG","click");
             }
         });
         drawerLayout = (DrawerLayout) findViewById(R.id.DrawreLayout);
@@ -64,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements SubjectFragment.O
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, drawerLayout, R.string.openDrawer,  R.string.closeDreawer);
+        return new ActionBarDrawerToggle(this, drawerLayout,toolbar, R.string.openDrawer,  R.string.closeDreawer);
     }
 
     public void selectDrawerItem(MenuItem item){
